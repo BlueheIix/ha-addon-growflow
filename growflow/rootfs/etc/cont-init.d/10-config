@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+set -euo pipefail
+# Placeholder for future config/migrations
