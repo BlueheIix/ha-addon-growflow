@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bash
+set -euo pipefail
+export NODE_ENV=${NODE_ENV:-production}
+export DB_PATH=${DB_PATH:-/data/growflow.db}
+export LOG_LEVEL=${LOG_LEVEL:-info}
+export ALLOWED_FRAME_ANCESTORS=${ALLOWED_FRAME_ANCESTORS:-"'self',*"}
+export PUBLIC_URL=${PUBLIC_URL:-.}
+mkdir -p /data
+cd /opt/growflow
+if npm run | grep -qE '^[[:space:]]*start'; then
+  npm run start
+else
+  if [ -f backend/dist/index.js ]; then
+    node backend/dist/index.js
+  else
+    echo "Backend entrypoint not found" >&2
+    exit 1
+  fi
+fi
