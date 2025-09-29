@@ -1,0 +1,11 @@
+name: Hello
+version: "0.0.1"
+slug: hello
+description: "Hello test add-on"
+arch:
+  - aarch64
+  - amd64
+  - armv7
+startup: application
+ingress: false
+image: null
